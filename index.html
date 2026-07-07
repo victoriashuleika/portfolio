@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victoria Shuleika — UX/UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:      #0E0E0E;
+    --bg2:     #161616;
+    --bg3:     #1F1F1F;
+    --bg4:     #272727;
+    --surface: #1A1A1A;
+    --border:  rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text:    #F0EDE8;
+    --text2:   #9C9690;
+    --text3:   #5C5854;
+    --accent:  #E8D5B0;
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans:  'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ──────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(14,14,14,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: var(--text); }
+
+  .nav-cta {
+    display: inline-block;
+    padding: 0.45rem 1.25rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #0E0E0E;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  #hero {
+    min-height: 100svh;
+    padding: 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 4rem;
+    padding-top: 6rem;
+    align-items: start;
+    position: relative;
+  }
+
+  /* Row 1, Col 1 — name */
+  .hero-name-cell {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 4rem;
+  }
+
+  /* Row 2, Col 1 — bio + signature + availability */
+  .hero-bio-cell {
+    grid-column: 1;
+    grid-row: 2;
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Row 1, Col 2 — quote */
+  .hero-quote-cell {
+    grid-column: 2;
+    grid-row: 1;
+    padding-top: 9.5rem;
+  }
+
+  /* Row 2, Col 2 — toggles + availability */
+  .hero-right {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 0;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .hero-eyebrow span { color: var(--accent); }
+
+  .hero-name {
+    font-family: var(--font-serif);
+    line-height: 1.0;
+    margin-bottom: 2.5rem;
+  }
+  .hero-name .first {
+    display: block;
+    font-size: clamp(4.5rem, 8vw, 7rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .hero-name .last {
+    display: block;
+    font-size: clamp(4.5rem, 8vw, 7rem);
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: -0.01em;
+    color: var(--accent);
+  }
+
+  .hero-quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.45rem;
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 44ch;
+    margin-top: 1rem;
+  }
+
+  .hero-bio {
+    font-size: 1rem;
+    color: var(--text2);
+    line-height: 1.75;
+    max-width: 46ch;
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-signature {
+    font-size: 1rem;
+    color: var(--accent);
+    line-height: 1.75;
+    margin-top: 0;
+    margin-bottom: 3rem;
+  }
+
+  /* toggles */
+  .toggles { display: flex; flex-direction: column; gap: 0.65rem; }
+
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    background: transparent;
+    color: var(--text2);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+    width: fit-content;
+  }
+  .toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .toggle-btn.open {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(232,213,176,0.06);
+  }
+
+  .toggle-arrow {
+    display: inline-block;
+    transition: transform 0.3s;
+    font-style: normal;
+  }
+  .toggle-btn.open .toggle-arrow { transform: rotate(180deg); }
+
+  .toggle-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.4s ease;
+  }
+  .toggle-body.open { max-height: 800px; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    padding: 1.25rem 0 0.5rem;
+  }
+
+  .skill-cat h4 {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.45rem;
+  }
+  .skill-cat ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .skill-cat ul li {
+    font-size: 0.82rem;
+    color: var(--text2);
+  }
+
+  .process-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.25rem 0 0.5rem;
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.5rem;
+  }
+  .process-num {
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--accent);
+    padding-top: 0.05rem;
+  }
+  .process-content h4 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.15rem;
+  }
+  .process-content p {
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+
+  .hero-bottom {
+    margin-top: auto;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .availability {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.9rem;
+    color: var(--text2);
+  }
+  .green-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 0 3px rgba(74,222,128,0.2), 0 0 8px rgba(74,222,128,0.4);
+    flex-shrink: 0;
+  }
+
+  .email-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .email-row svg { color: var(--text3); flex-shrink: 0; }
+  .email-row a {
+    color: var(--text2);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+  }
+  .email-row a:hover { color: var(--accent); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 3rem;
+    writing-mode: vertical-rl;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION SHARED ───────────────────────────────────── */
+  section { padding: 6rem 3rem; }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 3.5rem;
+    position: relative;
+  }
+
+  .section-label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.05;
+  }
+
+  .section-counter {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(5rem, 10vw, 9rem);
+    font-weight: 300;
+    color: rgba(255,255,255,0.04);
+    line-height: 1;
+    user-select: none;
+    position: absolute;
+    right: 0;
+    top: -1rem;
+  }
+
+  /* ── PROJECT CARDS ────────────────────────────────────── */
+  #work { padding-top: 5rem; }
+
+  .cards { display: flex; flex-direction: column; gap: 2rem; }
+
+  .card {
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .card:last-child { border-bottom: 1px solid var(--border); }
+
+  .card-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    cursor: pointer;
+  }
+
+  .card-cover {
+    overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block;
+  }
+  .card:hover .card-cover img { transform: scale(1.03); }
+
+  .card-info {
+    padding: 2.75rem;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+  .tag {
+    display: inline-block;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--border2);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--text2);
+  }
+  .tag.highlight {
+    background: rgba(232,213,176,0.1);
+    border-color: rgba(232,213,176,0.3);
+    color: var(--accent);
+  }
+
+  .card-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 40ch;
+    margin-bottom: 0;
+  }
+
+  .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.875rem;
+    color: var(--accent);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: var(--font-sans);
+    transition: opacity 0.2s;
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+  }
+  .card-cta:hover { opacity: 0.75; }
+  .cta-arrow {
+    display: inline-block;
+    transition: transform 0.3s;
+  }
+  .card.open .cta-arrow { transform: rotate(180deg); }
+
+  .card-footer {
+    margin-top: 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .card-num {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+  }
+  .card-year {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--text3);
+  }
+
+  /* card body */
+  .card-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.55s cubic-bezier(0.4,0,0.2,1);
+  }
+  .card.open .card-body { max-height: var(--body-h, 9999px); }
+
+  .card-body-inner {
+    padding: 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .meta-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .meta-item h5 {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.35rem;
+  }
+  .meta-item p, .meta-item a {
+    font-size: 0.875rem;
+    color: var(--text2);
+    line-height: 1.5;
+    text-decoration: none;
+  }
+  .meta-item a { color: var(--accent); }
+  .meta-item a:hover { text-decoration: underline; }
+
+  .detail-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .detail-col h4 {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text3);
+    margin-bottom: 0.85rem;
+  }
+  .detail-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .detail-col ul li {
+    font-size: 0.875rem;
+    color: var(--text2);
+    display: flex;
+    gap: 0.5rem;
+  }
+  .detail-col ul li::before {
+    content: '—';
+    color: var(--text3);
+    flex-shrink: 0;
+  }
+
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .gallery-item {
+    position: relative;
+  }
+  .gallery-item img {
+    width: 100%;
+    display: block;
+  }
+  .gallery-badge {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--text3);
+    border-radius: 4px;
+  }
+
+  /* ── CONTACT ──────────────────────────────────────────── */
+  #contact {
+    background: var(--bg2);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .contact-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .contact-eyebrow::before,
+  .contact-eyebrow::after {
+    content: '';
+    display: block;
+    width: 2.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .contact-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+  }
+
+  .contact-sub {
+    font-size: 0.95rem;
+    color: var(--text2);
+    max-width: 50ch;
+    line-height: 1.75;
+  }
+
+  .contact-email {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(232,213,176,0.3);
+    padding-bottom: 0.1em;
+    transition: border-color 0.2s;
+  }
+  .contact-email:hover { border-color: var(--accent); }
+
+  .contact-links {
+    display: flex;
+    gap: 2rem;
+    padding-top: 0.5rem;
+  }
+  .contact-link {
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-link:hover { color: var(--accent); }
+
+  /* ── FOOTER ───────────────────────────────────────────── */
+  footer {
+    padding: 1.5rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-name {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--text2);
+  }
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text3);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── REVEAL ANIMATION ─────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ── RESPONSIVE ───────────────────────────────────────── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+
+    #hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      padding: 0 1.5rem;
+      padding-top: 5rem;
+      gap: 0;
+    }
+    .hero-name-cell {
+      grid-column: 1; grid-row: 1;
+      padding-top: 3rem; padding-bottom: 0;
+    }
+    .hero-bio-cell {
+      grid-column: 1; grid-row: 2;
+      padding-top: 1.5rem; padding-bottom: 0;
+    }
+    .hero-quote-cell {
+      grid-column: 1; grid-row: 3;
+      padding-top: 1.5rem; padding-bottom: 0;
+    }
+    .hero-right {
+      grid-column: 1; grid-row: 4;
+      padding-top: 1.5rem; padding-bottom: 4rem;
+    }
+    .hero-quote { max-width: 100%; }
+    .scroll-hint { display: none; }
+
+    .card-header { grid-template-columns: 1fr; }
+    .card-cover { aspect-ratio: 16/9; }
+    .card-info { border-left: none; border-top: 1px solid var(--border); }
+
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .detail-cols { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+
+    .section-counter { display: none; }
+
+    footer { padding: 1.25rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .meta-strip { grid-template-columns: 1fr; }
+    .card-body-inner { padding: 1.5rem; }
+    .nav-link { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="#">VS</a>
+  <div class="nav-right">
+    <a class="nav-link" href="#work">Work</a>
+    <a class="nav-cta" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+
+  <!-- Row 1, Col 1: eyebrow + name -->
+  <div class="hero-name-cell reveal">
+    <p class="hero-eyebrow"><span>•</span> Salt Lake City, UT</p>
+    <h1 class="hero-name">
+      <span class="first">Victoria</span>
+      <span class="last">Shuleika</span>
+    </h1>
+  </div>
+
+  <!-- Row 1, Col 2: bio + signature + availability -->
+  <div class="hero-bio-cell reveal" style="transition-delay:0.12s">
+    <p class="hero-bio">
+      I'm Victoria, a UX/UI designer who brings a full
+      end-to-end perspective — from early UX research and wireframes to
+      high-fidelity UI, brand systems, and engineering handoff.
+    </p>
+    <p class="hero-signature">One pixel at a time.</p>
+    <div class="hero-bottom">
+      <div class="availability">
+        <span class="green-dot"></span>
+        Available for full-time opportunities
+      </div>
+      <div class="email-row">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <path d="m2 7 10 6 10-6"/>
+        </svg>
+        <a href="mailto:victoriashuleika@gmail.com">victoriashuleika@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2, Col 1: quote -->
+  <div class="hero-quote-cell">
+    <p class="hero-quote">
+      "Great design should not only function beautifully —
+      it should spark joy, solve real problems, and make everyday
+      interactions a little better."
+    </p>
+  </div>
+
+  <!-- Row 2, Col 2: toggles + availability -->
+  <div class="hero-right reveal" style="transition-delay:0.12s">
+    <div class="toggles">
+      <!-- Skills toggle -->
+      <button class="toggle-btn" id="btn-skills" onclick="toggleDrawer('skills','process')">
+        Skills &amp; tools <span class="toggle-arrow">↓</span>
+      </button>
+      <div class="toggle-body" id="drawer-skills">
+        <div class="skills-grid">
+          <div class="skill-cat">
+            <h4>Design &amp; Prototyping</h4>
+            <ul>
+              <li>Figma</li>
+              <li>Components</li>
+              <li>Auto Layout</li>
+              <li>Prototyping</li>
+              <li>Adobe XD</li>
+            </ul>
+          </div>
+          <div class="skill-cat">
+            <h4>Research &amp; UX</h4>
+            <ul>
+              <li>User Interviews</li>
+              <li>Usability Testing</li>
+              <li>Personas</li>
+              <li>Journey Mapping</li>
+              <li>IA / Sitemaps</li>
+              <li>User Flows</li>
+              <li>Wireframes</li>
+            </ul>
+          </div>
+          <div class="skill-cat">
+            <h4>UI &amp; Visual</h4>
+            <ul>
+              <li>Design Systems</li>
+              <li>Responsive UI</li>
+              <li>Motion &amp; Animation</li>
+              <li>Hi-fi UI</li>
+            </ul>
+          </div>
+          <div class="skill-cat">
+            <h4>Tools &amp; Branding</h4>
+            <ul>
+              <li>Photoshop</li>
+              <li>Illustrator</li>
+              <li>After Effects</li>
+              <li>Cinema 4D</li>
+              <li>Logo Design</li>
+              <li>Iconography</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Process toggle -->
+      <button class="toggle-btn" id="btn-process" onclick="toggleDrawer('process','skills')">
+        My design process <span class="toggle-arrow">↓</span>
+      </button>
+      <div class="toggle-body" id="drawer-process">
+        <div class="process-list">
+          <div class="process-step">
+            <span class="process-num">01</span>
+            <div class="process-content">
+              <h4>Research &amp; Discovery</h4>
+              <p>User interviews, competitive analysis, personas, pain point mapping.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span class="process-num">02</span>
+            <div class="process-content">
+              <h4>Information Architecture</h4>
+              <p>IA, sitemaps, user flows.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span class="process-num">03</span>
+            <div class="process-content">
+              <h4>Wireframes &amp; Prototyping</h4>
+              <p>Low-fi validated early, then interactive prototypes.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span class="process-num">04</span>
+            <div class="process-content">
+              <h4>High-Fidelity UI &amp; Brand</h4>
+              <p>Pixel-perfect screens, design systems, brand language.</p>
+            </div>
+          </div>
+          <div class="process-step">
+            <span class="process-num">05</span>
+            <div class="process-content">
+              <h4>Handoff &amp; Collaboration</h4>
+              <p>Developer-ready specs, close collaboration with engineering.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ── WORK ── -->
+<section id="work">
+  <div class="section-header reveal">
+    <div class="section-label-group">
+      <span class="section-label">Work</span>
+      <h2 class="section-heading">Projects</h2>
+    </div>
+    <span class="section-counter">03</span>
+  </div>
+
+  <div class="cards">
+
+    <!-- CARD 1: BMC -->
+    <div class="card" id="card-bmc">
+      <div class="card-header" onclick="toggleCard('card-bmc')">
+        <div class="card-cover">
+          <img src="images/bmc-card-cover.jpg" alt="BMC Fitness App cover">
+        </div>
+        <div class="card-info">
+          <div class="card-tags">
+            <span class="tag highlight">Mobile App</span>
+            <span class="tag">UX/UI</span>
+            <span class="tag">Brand Design</span>
+            <span class="tag">MVP</span>
+          </div>
+          <h3 class="card-title">BMC Fitness App</h3>
+          <p class="card-desc">MVP that improves engagement through structured progress and community accountability — from UX research to brand system and engineering handoff.</p>
+          <button class="card-cta">Open case study <span class="cta-arrow">↓</span></button>
+          <div class="card-footer">
+            <span class="card-num">01 / 03</span>
+            <span class="card-year">2022</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="meta-strip">
+            <div class="meta-item">
+              <h5>Audience</h5>
+              <p>Beginners + people maintaining an active lifestyle</p>
+            </div>
+            <div class="meta-item">
+              <h5>Goal</h5>
+              <p>Motivate consistent activity with an immersive experience</p>
+            </div>
+            <div class="meta-item">
+              <h5>Principles</h5>
+              <p>Clarity, motivation, system consistency</p>
+            </div>
+            <div class="meta-item">
+              <h5>Tools</h5>
+              <p>Figma · Illustrator</p>
+            </div>
+          </div>
+          <div class="detail-cols">
+            <div class="detail-col">
+              <h4>Contribution</h4>
+              <ul>
+                <li>UX research support &amp; competitive analysis</li>
+                <li>Information architecture &amp; user flows</li>
+                <li>Wireframes → Hi-fi UI &amp; interactive prototype</li>
+                <li>Brand system: logo, icons, visual language</li>
+                <li>PM &amp; engineering handoff</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>Features</h4>
+              <ul>
+                <li>Cross-timeframe progress (daily/weekly/monthly)</li>
+                <li>Workouts analytics &amp; history with RPE chart</li>
+                <li>Community — solo, friend, and open club goals</li>
+                <li>Duplicate prevention for community goals</li>
+                <li>Low-friction team formation with live validation</li>
+              </ul>
+            </div>
+          </div>
+          <div class="gallery">
+            <div class="gallery-item"><img src="images/bmc-01.jpg" alt="BMC — Project Overview" loading="lazy"><span class="gallery-badge">01 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-02.jpg" alt="Visual Identity & Brand System" loading="lazy"><span class="gallery-badge">02 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-03.jpg" alt="Home Dashboard" loading="lazy"><span class="gallery-badge">03 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-04.jpg" alt="Cross-Timeframe Progress System" loading="lazy"><span class="gallery-badge">04 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-05.jpg" alt="Workouts Analytics & History" loading="lazy"><span class="gallery-badge">05 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-06.jpg" alt="Community Architecture" loading="lazy"><span class="gallery-badge">06 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-07.jpg" alt="Community Discovery" loading="lazy"><span class="gallery-badge">07 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-08.jpg" alt="Structured Public Goal Creation" loading="lazy"><span class="gallery-badge">08 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-09.jpg" alt="Duplicate Prevention Mechanism" loading="lazy"><span class="gallery-badge">09 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-10.jpg" alt="Low-Friction Team Formation" loading="lazy"><span class="gallery-badge">10 / 11</span></div>
+            <div class="gallery-item"><img src="images/bmc-11.jpg" alt="End-to-End MVP System Design" loading="lazy"><span class="gallery-badge">11 / 11</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2: EduMatrix -->
+    <div class="card" id="card-edu">
+      <div class="card-header" onclick="toggleCard('card-edu')">
+        <div class="card-cover">
+          <img src="images/edu-card-cover.jpg" alt="EduMatrix App cover">
+        </div>
+        <div class="card-info">
+          <div class="card-tags">
+            <span class="tag highlight">Mobile App</span>
+            <span class="tag">UX/UI</span>
+            <span class="tag">EdTech</span>
+            <span class="tag">Apr 2025</span>
+          </div>
+          <h3 class="card-title">EduMatrix App</h3>
+          <p class="card-desc">A unified system for school discovery and family coordination — helping busy parents compare childcare providers, manage schedules, and make faster, more confident decisions.</p>
+          <button class="card-cta">Open case study <span class="cta-arrow">↓</span></button>
+          <div class="card-footer">
+            <span class="card-num">02 / 03</span>
+            <span class="card-year">2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="meta-strip">
+            <div class="meta-item">
+              <h5>Audience</h5>
+              <p>Busy parents managing multiple children</p>
+            </div>
+            <div class="meta-item">
+              <h5>Goal</h5>
+              <p>Unify school discovery, evaluation &amp; coordination</p>
+            </div>
+            <div class="meta-item">
+              <h5>Tools</h5>
+              <p>Figma · Illustrator</p>
+            </div>
+            <div class="meta-item">
+              <h5>View on</h5>
+              <a href="https://www.behance.net/gallery/227386359/EduMatrix-App-UXUI-Case-Study" target="_blank" rel="noopener">Behance ↗</a>
+            </div>
+          </div>
+          <div class="detail-cols">
+            <div class="detail-col">
+              <h4>Contribution</h4>
+              <ul>
+                <li>UX research: interviews &amp; personas (Sarah &amp; Jason)</li>
+                <li>6 core pain points mapped &amp; validated</li>
+                <li>IA, user flows &amp; low-fidelity wireframes</li>
+                <li>Hi-fi UI</li>
+                <li>Design system: color, typography, components</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>Flows Designed</h4>
+              <ul>
+                <li>Discovery — school &amp; activity search with smart filters</li>
+                <li>Evaluation — side-by-side comparison &amp; price calculator</li>
+                <li>Coordination — unified family calendar &amp; home dashboard</li>
+                <li>Onboarding — guided entry for different user types</li>
+                <li>Teacher profiles, messaging, galleries, events</li>
+              </ul>
+            </div>
+          </div>
+          <div class="gallery">
+            <div class="gallery-item"><img src="images/edu-01.jpg" alt="Project Overview" loading="lazy"><span class="gallery-badge">01 / 07</span></div>
+            <div class="gallery-item"><img src="images/edu-02.jpg" alt="User Research & Personas" loading="lazy"><span class="gallery-badge">02 / 07</span></div>
+            <div class="gallery-item"><img src="images/edu-03.jpg" alt="Low-Fidelity Wireframes" loading="lazy"><span class="gallery-badge">03 / 07</span></div>
+            <div class="gallery-item"><img src="images/edu-04.jpg" alt="Design System & Feature Flows" loading="lazy"><span class="gallery-badge">04 / 07</span></div>
+            <div class="gallery-item"><img src="images/edu-05.jpg" alt="Discovery · Evaluation · Coordination" loading="lazy"><span class="gallery-badge">05 / 07</span></div>
+            <div class="gallery-item"><img src="images/edu-06.jpg" alt="EduMatrix — Page 6" loading="lazy"><span class="gallery-badge">06 / 07</span></div>
+            <div class="gallery-item"><img src="images/edu-07.jpg" alt="EduMatrix — Page 7" loading="lazy"><span class="gallery-badge">07 / 07</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3: Photographer -->
+    <div class="card" id="card-photo">
+      <div class="card-header" onclick="toggleCard('card-photo')">
+        <div class="card-cover">
+          <img src="images/photo-card-cover.jpg" alt="Photographer Website cover">
+        </div>
+        <div class="card-info">
+          <div class="card-tags">
+            <span class="tag highlight">Web Design</span>
+            <span class="tag">UI</span>
+            <span class="tag">Visual Design</span>
+            <span class="tag">2021</span>
+          </div>
+          <h3 class="card-title">Photographer Website</h3>
+          <p class="card-desc">A moody, editorial website for Julia Zaharova — NY-based photographer. The design lets imagery lead, with a minimal interface that preserves atmosphere and never competes with the work.</p>
+          <button class="card-cta">Open case study <span class="cta-arrow">↓</span></button>
+          <div class="card-footer">
+            <span class="card-num">03 / 03</span>
+            <span class="card-year">2021</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="meta-strip">
+            <div class="meta-item">
+              <h5>Client</h5>
+              <p>Julia Zaharova, NY-based photographer</p>
+            </div>
+            <div class="meta-item">
+              <h5>Goal</h5>
+              <p>Let photography take center stage with minimal UI</p>
+            </div>
+            <div class="meta-item">
+              <h5>Approach</h5>
+              <p>Editorial aesthetic, monochromatic palette, atmospheric depth</p>
+            </div>
+            <div class="meta-item">
+              <h5>View on</h5>
+              <a href="https://www.behance.net/gallery/112960227/Website-for-photographer" target="_blank" rel="noopener">Behance ↗</a>
+            </div>
+          </div>
+          <div class="detail-cols">
+            <div class="detail-col">
+              <h4>Contribution</h4>
+              <ul>
+                <li>Full website redesign for juliazaharova.com</li>
+                <li>Split-panel hero with three-column image reveal</li>
+                <li>Booking session flow integrated into the design</li>
+                <li>Portfolio, pricing, publications &amp; feedback pages</li>
+                <li>Pop-ups and mobile-responsive version</li>
+              </ul>
+            </div>
+            <div class="detail-col">
+              <h4>Design Decisions</h4>
+              <ul>
+                <li>Monochromatic palette keeps focus on the photography</li>
+                <li>Minimal navigation that never distracts from the work</li>
+                <li>Session booking added for direct client conversion</li>
+                <li>Playfair Display + Nunito type pairing for editorial feel</li>
+              </ul>
+            </div>
+          </div>
+          <div class="gallery">
+            <div class="gallery-item"><img src="images/photo-01.jpg" alt="Main Page & Responsive Design" loading="lazy"><span class="gallery-badge">01 / 03</span></div>
+            <div class="gallery-item"><img src="images/photo-02.jpg" alt="Other Pages & Portfolio" loading="lazy"><span class="gallery-badge">02 / 03</span></div>
+            <div class="gallery-item"><img src="images/photo-03.jpg" alt="Portfolio, About & Prices" loading="lazy"><span class="gallery-badge">03 / 03</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CONTACT ── -->
+<section id="contact" class="reveal">
+  <div class="contact-eyebrow">Contact</div>
+  <h2 class="contact-heading">Let's work together</h2>
+  <p class="contact-sub">
+    Open to new opportunities, collaborations, and conversations
+    about design. Whether you have a project in mind or just want to connect
+    — I'd love to hear from you.
+  </p>
+  <a class="contact-email" href="mailto:victoriashuleika@gmail.com">
+    victoriashuleika@gmail.com
+  </a>
+  <div class="contact-links">
+    <a class="contact-link" href="https://www.behance.net/victorialiubelskaya" target="_blank" rel="noopener">Behance ↗</a>
+    <a class="contact-link" href="https://www.linkedin.com/in/victoriashuleika" target="_blank" rel="noopener">LinkedIn ↗</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span class="footer-name">Victoria Shuleika</span>
+  <span class="footer-copy">© 2025 · UX/UI Designer</span>
+</footer>
+
+<script>
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.07 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Toggle drawers (skills / process) ── */
+  function toggleDrawer(open, close) {
+    const openBtn    = document.getElementById('btn-' + open);
+    const openDrawer = document.getElementById('drawer-' + open);
+    const closeBtn    = document.getElementById('btn-' + close);
+    const closeDrawer = document.getElementById('drawer-' + close);
+
+    const isAlreadyOpen = openDrawer.classList.contains('open');
+
+    closeDrawer.classList.remove('open');
+    closeBtn.classList.remove('open');
+
+    if (!isAlreadyOpen) {
+      openDrawer.classList.add('open');
+      openBtn.classList.add('open');
+    } else {
+      openDrawer.classList.remove('open');
+      openBtn.classList.remove('open');
+    }
+  }
+
+  /* ── Project cards (accordion) ── */
+  function toggleCard(id) {
+    const cards = ['card-bmc', 'card-edu', 'card-photo'];
+    const clicked = document.getElementById(id);
+    const isOpen = clicked.classList.contains('open');
+
+    cards.forEach(c => {
+      const card = document.getElementById(c);
+      const body = card.querySelector('.card-body');
+      card.classList.remove('open');
+      body.style.removeProperty('--body-h');
+    });
+
+    if (!isOpen) {
+      const body = clicked.querySelector('.card-body');
+      const h = body.scrollHeight;
+      body.style.setProperty('--body-h', h + 'px');
+      clicked.classList.add('open');
+      setTimeout(() => {
+        clicked.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+  }
+</script>
+</body>
+</html>
